@@ -6,6 +6,7 @@ from fastapi.openapi.docs import (
 )
 from starlette.staticfiles import StaticFiles
 
+from httpbin.meta import tags_metadata
 from httpbin.router import (
     http_method_router,
     auth_router,
@@ -20,7 +21,13 @@ from httpbin.router import (
     anything_router,
 )
 
-app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI(
+    title="fastapi-httpbin",
+    summary="A simple HTTP Request & Response Service implemented by FastAPI.",
+    docs_url=None,
+    redoc_url=None,
+    openapi_tags=tags_metadata
+)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
